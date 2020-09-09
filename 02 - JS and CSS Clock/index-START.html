@@ -64,10 +64,38 @@
       top: 50%;
     }
 
+    .second-hand, .min-hand, .hour-hand {
+      transform-origin: 100%;
+      /* transform: rotate(90deg); */
+    }
+
   </style>
 
   <script>
+    // Initialize
 
+    // seconds, minutes and hours clock:
+    function clock() {
+      const date = new Date();
+
+      const second = date.getSeconds();
+      const positionSec = ((second / 60) * 360);
+      document.querySelector('.second-hand').style.transform = `rotate(${positionSec + 90}deg)`;
+
+      const minute = date.getMinutes();
+      const positionMinute = ((minute / 60) * 360);
+      document.querySelector('.min-hand').style.transform = `rotate(${positionMinute + 90}deg)`;
+      
+      const hour = date.getHours();
+      const positionHour = ((hour / 24) * 360);
+      document.querySelector('.hour-hand').style.transform = `rotate(${positionHour + 90}deg)`;
+    }
+
+    // t=1s to t=x:
+    setInterval(clock, 1000);
+    
+    // t=0:
+    clock();
 
   </script>
 </body>
