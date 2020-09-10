@@ -15,12 +15,24 @@
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="base" type="color" name="base" value=--color>
   </div>
 
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+
+:root {
+    --spacing: 10px;
+    --blur: 1px;
+    --color: #ffff00;
+  }
+    img {
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background-color: var(--color);
+    }
+
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +57,35 @@
   </style>
 
   <script>
+
+    let root = document.documentElement;
+    let setSpacing = document.getElementById("spacing");
+    let setBlur = document.getElementById("blur");
+    let setColor = document.getElementById("base");
+
+    setSpacing.addEventListener("change", (event) => {
+      root.style.setProperty('--spacing', event.target.value + "px");
+    });
+
+    setBlur.addEventListener("change", (event) => {
+      root.style.setProperty('--blur', event.target.value + "px");
+    });
+
+    setColor.addEventListener("change", (event) => {
+      root.style.setProperty('--color', event.target.value);
+    });
+
+    // setSpacing = document.getElementById("spacing");
+    // setSpacing.addEventListener("change", (event) => {
+    //   document.querySelector("img").style.setProperty('padding', `${event.target.value}px`);
+    // });
+
+    // setBlur = document.getElementById("blur");
+    // setBlur.addEventListener("change", (event) => {
+    //   document.querySelector("img").style.setProperty('filter', `${event.target.value}px`);
+    // });
+
+
   </script>
 
 </body>
